@@ -1,0 +1,32 @@
+<%= form_for(ingredient) do |f| %>
+  <% if ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+
+      <ul>
+      <% ingredient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome %>
+    <%= f.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category_id , "Categoria" %>
+    <%= f.select(:category_id, Category.all.map { |category| [category.nome, category.id] }) %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :prezzo %>
+    <%= f.text_field :prezzo %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
